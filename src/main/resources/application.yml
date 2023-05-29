@@ -1,1 +1,15 @@
+server:
+  port: 8080
 
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/master_ticket?zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: sgs1159
+    password: vace1159~
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+  thymeleaf:
+    cache: false
