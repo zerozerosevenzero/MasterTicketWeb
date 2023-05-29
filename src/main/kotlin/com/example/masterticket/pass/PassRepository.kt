@@ -15,4 +15,12 @@ interface PassRepository : JpaRepository<Pass, Long> {
                 "WHERE p.id = :id"
     )
     fun updateRemainingCount(id: Long?, remainingCount: Int?): Int
+
+    @Query(
+        value = "select p from Pass p " +
+                "join fetch p.packaze " +
+                "where p.userId = :userId " +
+                "order by p.endedAt desc nulls first "
+    )
+    fun findByUserId(userId: String?): List<Pass>
 }

@@ -2,7 +2,7 @@ server:
   port: 8080
 
 spring:
-  datasource:
+  datasource: 
     url: jdbc:mysql://127.0.0.1:3306/master_ticket?zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: sgs1159
