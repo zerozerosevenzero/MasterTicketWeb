@@ -12,5 +12,5 @@ interface StatisticsRepository : JpaRepository<Statistics, Long> {
                 "WHERE s.statisticsAt BETWEEN :from AND :to " +
                 "GROUP BY s.statisticsAt"
     )
-    fun findByStatisticsAtBetweenAndGroupBy(@Param("from") from: LocalDateTime, @Param("to") to: LocalDateTime): List<AggregatedStatistics>
+    fun findByStatisticsAtBetweenAndGroupBy(@Param("from") from: LocalDateTime?, @Param("to") to: LocalDateTime?): List<AggregatedStatistics>
 }

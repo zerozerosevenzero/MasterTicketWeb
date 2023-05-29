@@ -6,4 +6,5 @@ import java.time.LocalDateTime
 
 interface PackageRepository : JpaRepository<Packaze, Long> {
     fun findByCreatedAtAfter(dateTime: LocalDateTime, pageable: Pageable): List<Packaze>
+    fun findAllByOrderByName(): List<Packaze>
 }

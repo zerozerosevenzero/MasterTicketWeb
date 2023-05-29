@@ -1,8 +1,6 @@
 package com.example.masterticket.bulkpass
 
 import com.example.masterticket.BaseEntity
-import com.example.masterticket.pass.Pass
-import com.example.masterticket.pass.PassStatus
 import java.time.LocalDateTime
 import javax.persistence.*
 
@@ -13,9 +11,9 @@ class BulkPass(
     val userGroupId: String,
     @Enumerated(EnumType.STRING)
     var status: BulkPassStatus,
-    val count: Int,
+    val count: Int = -1,
     val startedAt: LocalDateTime,
-    val endedAt: LocalDateTime,
+    var endedAt: LocalDateTime? = null,
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
@@ -26,4 +24,9 @@ class BulkPass(
         return this
     }
 
+    fun setEndedAt(period: Int?) {
+        if (period == null) { return }
+        this.endedAt = startedAt.plusDays(period.toLong())
+        this.createdAt = LocalDateTime.now()
+    }
 }

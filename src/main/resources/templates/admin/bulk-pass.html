@@ -36,13 +36,13 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="bulkPass : ${bulkPasses}" th:classappend="${bulkPass.getStatus().name() == 'COMPLETED' ? 'table-active' : ''}">
-                                            <td th:text="${bulkPass.getUserGroupId()}"></td>
-                                            <td th:if="${bulkPass.getStatus().name() == 'COMPLETED'}">지급 완료</td>
-                                            <td th:unless="${bulkPass.getStatus().name() == 'COMPLETED'}">지급 전</td>
-                                            <td th:text="${bulkPass.getCount()}"></td>
-                                            <td th:text="${#temporals.format(bulkPass.getStartedAt(), 'yyyy-MM-dd HH:mm')}"></td>
-                                            <td th:text="${#temporals.format(bulkPass.getEndedAt(), 'yyyy-MM-dd HH:mm')}"></td>
+                                        <tr th:each="bulkPass : ${bulkPasses}" th:classappend="${bulkPass.status.name == 'COMPLETED' ? 'table-active' : ''}">
+                                            <td th:text="${bulkPass.userGroupId}"></td>
+                                            <td th:if="${bulkPass.status.name == 'COMPLETED'}">지급 완료</td>
+                                            <td th:unless="${bulkPass.status.name == 'COMPLETED'}">지급 전</td>
+                                            <td th:text="${bulkPass.count}"></td>
+                                            <td th:text="${#temporals.format(bulkPass.startedAt, 'yyyy-MM-dd HH:mm')}"></td>
+                                            <td th:text="${#temporals.format(bulkPass.endedAt, 'yyyy-MM-dd HH:mm')}"></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -58,11 +58,11 @@
                             <div class="card-body">
                                 <form action="#" th:action="@{/admin/bulk-pass}" th:object="${request}" method="post">
                                     <div class="small mb-1">패키지</div>
-                                    <select class="form-control mb-3" th:field="*{packageSeq}">
+                                    <select class="form-control mb-3" th:field="*{packageId}">
                                         <option value="">등록된 패키지를 선택해주세요.</option>
                                         <option th:each="package : ${packages}"
-                                                th:value="${package.getPackageSeq()}"
-                                                th:text="${package.getPackageName()}" >
+                                                th:value="${package.id}"
+                                                th:text="${package.name}" >
                                         </option>
                                     </select>
 
@@ -76,9 +76,9 @@
                                     </select>
 
                                     <div class="small mb-1">시작 일시</div>
-                                    <input class="form-control mb-5" type="text" placeholder="2022-09-01 00:00" th:field="*{startedAt}" />
+                                    <input class="form-control mb-5" type="text" placeholder="20230901" th:field="*{startedAt}" />
                                     <div class="d-flex align-items-end flex-column">
-                                        <input class="btn btn-primary" type="submit" value="+ 등록">
+                                        <input class="btn btn-primary" type="submit" value="등록">
                                     </div>
 
                                 </form>
