@@ -4,6 +4,7 @@ import com.example.masterticket.packaze.PackageRepository
 import com.example.masterticket.packaze.Packaze
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
 
 @Service
@@ -18,6 +19,7 @@ class BulkPassService(
             return bulkPasses
         }
 
+    @Transactional
     fun addBulkPass(bulkPassRequest: BulkPassRequest) {
         val packaze: Packaze =
             packageRepository.findByIdOrNull(bulkPassRequest.packageId) ?: throw (IllegalArgumentException("해당하는 패키지가 없습니다."))

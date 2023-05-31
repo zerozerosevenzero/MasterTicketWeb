@@ -7,7 +7,7 @@ import javax.persistence.*
 class Packaze(
 
     val name: String?,
-    val count: Int = -1,
+    val count: Int? = null,
     var period: Int?,
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
